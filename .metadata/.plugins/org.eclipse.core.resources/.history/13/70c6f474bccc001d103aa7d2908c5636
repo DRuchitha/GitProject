@@ -1,0 +1,34 @@
+package springmvc.mvc_spring.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import spring.dto.User;
+
+@Controller
+	public class TicketRegistrationController {
+		@RequestMapping("/welcome")
+		public String welcome(@ModelAttribute("register") User user) {
+			System.out.println("hello");
+			return "WelcomePage";
+			
+		}
+		@RequestMapping("/success")
+		public String processOrder(@Valid @ModelAttribute("register") User user,BindingResult result) {
+			if(result.hasErrors()) {
+				return "WelcomePage";
+			}
+			
+			return "Success";
+			
+	  }
+	}
+
+
+
